@@ -5,6 +5,8 @@ Notes:
 * added influxdb image to ECR, need to verify ports and incorporate docker-compose file.  Normally this is done with ecs-cli; however, it is unavailable for windows.  Need to decided about spinning up a linux vm for this task.  Most likely possible through AWS ECS UI as well.
 	* using container-transform to convert the docker-compose to an ecs task https://github.com/micahhausler/container-transform
 	* memory set through UI (128 to start) also removed tildas from volumn names
+* ECS cluster with one container instance of influxdb running
+* Stopping for the night.  Planning to pick up again 20190921 in the evening to step the ec2s for monitoring with the lambda.
 
 
 ## Problem 1
