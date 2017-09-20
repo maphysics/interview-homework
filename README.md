@@ -2,7 +2,7 @@
 
 Notes:
 20170919 
-* added influxdb image to ECR
+* added influxdb image to ECR, need to verify ports and incorporate docker-compose file.  Normally this is done with ecs-cli; however, it is unavailable for windows.  Need to decided about spinning up a linux vm for this task.  Most likely possible through AWS ECS UI as well.
 
 
 
