@@ -1,0 +1,48 @@
+{
+    "containerDefinitions": [
+        {
+            "essential": true,
+            "image": "influxdb",
+            "mountPoints": [
+                {
+                    "containerPath": "/var/lib/influxdb",
+                    "sourceVolume": "~DockerInfluxdbData"
+                },
+                {
+                    "containerPath": "/etc/influxdb",
+                    "sourceVolume": "~DockerInfluxdbEtc"
+                }
+            ],
+            "name": "influxdb",
+            "portMappings": [
+                {
+                    "containerPort": 8086,
+                    "hostPort": 8086
+                },
+                {
+                    "containerPort": 8083,
+                    "hostPort": 8083
+                },
+                {
+                    "containerPort": 2003,
+                    "hostPort": 2003
+                }
+            ]
+        }
+    ],
+    "family": "",
+    "volumes": [
+        {
+            "host": {
+                "sourcePath": "~/docker/influxdb/data"
+            },
+            "name": "~DockerInfluxdbData"
+        },
+        {
+            "host": {
+                "sourcePath": "~/docker/influxdb/etc"
+            },
+            "name": "~DockerInfluxdbEtc"
+        }
+    ]
+}
