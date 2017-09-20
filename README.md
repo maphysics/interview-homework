@@ -1,5 +1,10 @@
 # Interview Homework
 
+Notes:
+20170919 
+* added influxdb image to ECR
+
+
 
 ## Problem 1
 
