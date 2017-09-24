@@ -8,6 +8,12 @@ Notes:
 * ECS cluster with one container instance of influxdb running
 * Stopping for the night.  Planning to pick up again 20190921 in the evening to step the ec2s for monitoring with the lambda.
 
+20170923
+* created the python deployment archive for the lambda
+* started researching on influxdb works
+* todo: edit Dockerfile to make the database, users, etc
+* todo: regenerate task on ecs instance
+* todo: update lambda function to put data in database - verify permissions/roles
 
 ## Problem 1
 
