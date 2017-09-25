@@ -1,22 +1,22 @@
 import boto3
+import datetime as dt
 from influxdb import InfluxDBClient
 
 ec2 = boto3.client('ec2');
 cloudwatch = boto3.client('cloudwatch');
+tagName = "aws:cloudformation:stack-name"
+tagValue = "EC2ContainerService-influxdb-cluster"
 
 
 def lambda_handler(event, context):
     point = make_payload()
-    # Connect to client
-    # Currently my ec2 running my docker image of influxdb lacks an elastic ip
-    # Therefore the call may fail on instance recovery
-    # If autoscaling group was enabled
-    # Otherwise it will fail as no machine will come up?
+
     client = InfluxDBClient('ec2-34-228-233-250.compute-1.amazonaws.com', 8086, 'root', 'root', 'example')
     # Check database is there
     # If yes write_points
     # Else make database, then write points
     # Close connection
+    return point
 
 
 def make_payload():
@@ -25,9 +25,9 @@ def make_payload():
         {
             "measurement": "number_of_running_instances",
             "tags": {
-                "region": boto3.session.Session().region_name,
+                "region": boto3.session.Session().region_name
             },
-            "time": datetime.datetime.now(),
+            "time": str(dt.datetime.now()),
             "fields": {
                 "value": number
             }
@@ -39,10 +39,13 @@ def make_payload():
 def get_running_count():
     count = 0
     response = ec2.describe_instances()
+    print(response)
 
     for r in response['Reservations']:
         for i in r['Instances']:
             print(i['State'])
-            if i['State']['Name'] == 'running':
-                count += 1
+            if 'Tags' in i and i['State']['Name'] == 'running':
+                for t in i['Tags']:
+                    if t['Key'] == tagName and t['Value'] == tagValue:
+                        count += 1
     return count

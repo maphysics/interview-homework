@@ -3,13 +3,13 @@
     "volumes": [
         {
             "host": {
-                "sourcePath": "~/docker/influxdb/data"
+                "sourcePath": "/docker/influxdb/data"
             },
             "name": "DockerInfluxdbData"
         },
         {
             "host": {
-                "sourcePath": "~/docker/influxdb/etc"
+                "sourcePath": "/docker/influxdb/etc"
             },
             "name": "DockerInfluxdbEtc"
         }
@@ -19,7 +19,7 @@
             "name": "influxdb",
             "image": "878197815577.dkr.ecr.us-east-1.amazonaws.com/influxdb:latest",
             "cpu": "10",
-            "memory": "300",
+            "memory": "6000",
             "essential": true,
             "portMappings": [
                 {
