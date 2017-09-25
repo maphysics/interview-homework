@@ -1,0 +1,90 @@
+{
+    "family": "influxdb-task",
+    "volumes": [
+        {
+            "host": {
+                "sourcePath": "~/docker/influxdb/data"
+            },
+            "name": "DockerInfluxdbData"
+        },
+        {
+            "host": {
+                "sourcePath": "~/docker/influxdb/etc"
+            },
+            "name": "DockerInfluxdbEtc"
+        }
+    ],
+    "containerDefinitions": [
+        {
+            "name": "influxdb",
+            "image": "878197815577.dkr.ecr.us-east-1.amazonaws.com/influxdb:latest",
+            "cpu": "10",
+            "memory": "300",
+            "essential": true,
+            "portMappings": [
+                {
+                    "hostPort": "8086",
+                    "containerPort": "8086",
+                    "protocol": "tcp"
+                },
+                {
+                    "hostPort": "8083",
+                    "containerPort": "8083",
+                    "protocol": "tcp"
+                },
+                {
+                    "hostPort": "2003",
+                    "containerPort": "2003",
+                    "protocol": "tcp"
+                }
+            ],
+            "links": [],
+            "command": [
+                "influxdb"
+            ],
+            "entryPoint": [
+                "/entrypoint.sh"
+            ],
+            "environment": [
+                {
+                    "name": "INFLUXDB_DB",
+                    "value": "instances"
+                },
+                {
+                    "name": "INFLUXDB_ADMIN_USER",
+                    "value": "root"
+                },
+                {
+                    "name": "INFLUXDB_ADMIN_USER_PASSWORD",
+                    "value": "root"
+                },
+                {
+                    "name": "INFLUXDB_USER",
+                    "value": "qback"
+                },
+                {
+                    "name": "INFLUXDB_USER_PASSWORD",
+                    "value": "hailmary"
+                }
+            ],
+            "volumesFrom": null,
+            "hostname": null,
+            "user": null,
+            "workingDirectory": null,
+            "extraHosts": null,
+            "logConfiguration": null,
+            "ulimits": null,
+            "dockerLabels": null,
+			     "mountPoints": [
+                {
+                    "containerPath": "/var/lib/influxdb",
+                    "sourceVolume": "DockerInfluxdbData"
+                },
+                {
+                    "containerPath": "/etc/influxdb",
+                    "sourceVolume": "DockerInfluxdbEtc"
+                }
+            ]
+        }
+    ]
+}
