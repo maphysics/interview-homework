@@ -15,6 +15,14 @@ Notes:
 * todo: regenerate task on ecs instance
 * todo: update lambda function to put data in database - verify permissions/roles
 
+20170924
+* adding environment variable overrides to the ecs task
+	* INFLUX_DB=instances 
+	* INFLUXDB_ADMIN_USER=root 
+	* INFLUXDB_AMDIN_PASSWORD=root 
+	* INFLUXDB_USER=qback
+	* INFLUXDB_USER_PASSWORD=hailmary
+
 ## Problem 1
 
 ### Scenario
